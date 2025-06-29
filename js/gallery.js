@@ -83,4 +83,9 @@ imageList.addEventListener("click", function(e){
 
         
     }
+    document.addEventListener("keyup", function(e){
+          if(e.code === "Escape"){
+              imgHolder.close();
+          }
+        })
 })
