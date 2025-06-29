@@ -78,14 +78,17 @@ images.forEach(({preview, original, description}) =>{
 imageList.addEventListener("click", function(e){
     e.preventDefault();
     if(e.target.nodeName==="IMG"){
-        const imgHolder = basicLightbox.create(`<img src="${e.target.dataset.source}" width="1112" height="640"/>`);
+        const imgHolder = basicLightbox.create(`<img src="${e.target.dataset.source}" width="1112" height="640" />`);
         imgHolder.show();
 
         
     }
-    document.addEventListener("keyup", function(e){
+    if(imgHolder){
+        document.addEventListener("keyup", function(e){
           if(e.code === "Escape"){
               imgHolder.close();
           }
         })
+    }
+    
 })
