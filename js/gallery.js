@@ -82,8 +82,5 @@ imageList.addEventListener("click", function(e){
         imgHolder.show();
 
         
-        })
     }
-    
-
 })
