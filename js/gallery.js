@@ -1,3 +1,4 @@
+let flag=false;
 const images = [
     {
       preview:
@@ -67,25 +68,28 @@ const images = [
   
 const imageList = document.querySelector(".gallery");
 
-images.forEach(({preview, original, description}) =>{
-    imageList.innerHTML += `<li class="image-cart">
+const newImages = images.map(({preview, original, description})=>{
+  `<li class="image-cart">
         <a class="image-link" href="${original}">
             <img class="gallery-image" src="${preview}" data-source="${original}" alt="${description} width="360" height="200"/>
         </a>
     </li>`
+}).join("");
+
+imageList.insertAdjacentHTML("beforeend", newImages);
+
+document.addEventListener("keyup", function(e){
+  if(e.code === "Escape"){
+      imgHolder.close();
+  }
 })
 
 imageList.addEventListener("click", function(e){
     e.preventDefault();
     if(e.target.nodeName==="IMG"){
-        const imgHolder = basicLightbox.create(`<img src="${e.target.dataset.source}" width="1112" height="640"/>`);
+        imgHolder = basicLightbox.create(`<img src="${e.target.dataset.source}" width="1112" height="640"/>`);
         imgHolder.show();
 
-        document.addEventListener("keyup", function(e){
-            if(e.code === "Escape"){
-                imgHolder.close();
-            }
-        })
     }
     
 
